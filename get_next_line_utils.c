@@ -1,0 +1,109 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/05/10 10:45:06 by ccolin            #+#    #+#             */
+/*   Updated: 2024/05/17 15:38:50 by ccolin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "get_next_line.h"
+
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] && s[i] != (char)c && i < BUFFER_SIZE)
+		i++;
+	if (s[i] == (char)c)
+		return ((char *)&s[i]);
+	return ((void *)0);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	i = 0;
+	j = 0;
+	if (!s1 && !s2)
+		return (NULL);
+	if (!s1)
+		return (ft_strdup(s2));
+	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	while (s1[i])
+	{
+		str[j++] = s1[i++];
+	}
+	i = 0;
+	while (s2[i] && i < BUFFER_SIZE)
+	{
+		str[j++] = s2[i++];
+	}
+	str[j] = '\0';
+	free((void *)s1);
+	return (str);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	int		i;
+	int		size;
+	char	*ptr;
+
+	i = 0;
+	size = ft_strlen(s1);
+	ptr = malloc(sizeof(char) * size + 1);
+	if (ptr == NULL)
+		return (NULL);
+	while (s1[i])
+	{
+		ptr[i] = s1[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}
+
+int	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+
+//#include <fcntl.h>
+//#include <stdio.h>
+//#include <unistd.h>
+
+//int	main(void)
+//{
+//	int		fd;
+//	char	*line;
+
+//	fd = open("test.txt", O_RDONLY);
+//	if (fd < 0)
+//	{
+//		perror("Error opening file");
+//		return (1);
+//	}
+//	while ((line = get_next_line(fd)) != NULL)
+//	{
+//		printf("NEXT+LINE =%s", line);
+//		free(line);
+//	}
+//	close(fd);
+//	return (0);
+//}
