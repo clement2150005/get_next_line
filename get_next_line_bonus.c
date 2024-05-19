@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:18:52 by ccolin            #+#    #+#             */
-/*   Updated: 2024/05/19 21:02:40 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/05/19 21:29:09 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*leftover;
+	static char	*leftover[OPEN_MAX];
 	char		*next_line;
 	char		*temp;
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
-	leftover = ft_read_from_file(fd, leftover);
-	if (!leftover)
+	leftover[fd] = ft_read_from_file(fd, leftover[fd]);
+	if (!leftover[fd])
 	{
-		free(leftover);
+		free(leftover[fd]);
 		return (NULL);
 	}
-	next_line = ft_find_line(leftover);
-	temp = leftover;
-	leftover = ft_find_leftover(leftover);
-	if (leftover == NULL)
-		free(leftover);
+	next_line = ft_find_line(leftover[fd]);
+	temp = leftover[fd];
+	leftover[fd] = ft_find_leftover(leftover[fd]);
+	if (leftover[fd] == NULL)
+		free(leftover[fd]);
 	free(temp);
 	return (next_line);
 }

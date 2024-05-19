@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 10:45:06 by ccolin            #+#    #+#             */
-/*   Updated: 2024/05/19 21:06:17 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/05/19 21:25:44 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,26 +95,26 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-//#include <fcntl.h>
-//#include <stdio.h>
-//#include <unistd.h>
+// #include <fcntl.h>
+// #include <stdio.h>
+// #include <unistd.h>
 
-//int	main(void)
-//{
-//	int		fd;
-//	char	*line;
+// int	main(void)
+// {
+// 	int		fd;
+// 	char	*line;
 
-//	fd = open("test.txt", O_RDONLY);
-//	if (fd < 0)
-//	{
-//		perror("Error opening file");
-//		return (1);
-//	}
-//	while ((line = get_next_line(fd)) != NULL)
-//	{
-//		printf("/nNext Line = %s", line);
-//		free(line);
-//	}
-//	close(fd);
-//	return (0);
-//}
+// 	fd = open("test.txt", O_RDONLY);
+// 	if (fd < 0)
+// 	{
+// 		perror("Error opening file");
+// 		return (1);
+// 	}
+// 	while ((line = get_next_line(fd)) != NULL)
+// 	{
+// 		printf("/nNext Line = %s", line);
+// 		free(line);
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
