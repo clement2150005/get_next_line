@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 10:45:06 by ccolin            #+#    #+#             */
-/*   Updated: 2024/05/17 15:38:50 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/05/19 16:51:29 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	if (!s1)
 		return (ft_strdup(s2));
-	str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (str == NULL)
 		return (NULL);
 	while (s1[i])
@@ -83,6 +83,17 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t			i;
+	unsigned char	*ptr;
+
+	ptr = (unsigned char *)b;
+	i = 0;
+	while (i < len)
+		ptr[i++] = c;
+	return (b);
+}
 
 //#include <fcntl.h>
 //#include <stdio.h>
@@ -101,7 +112,7 @@ int	ft_strlen(const char *str)
 //	}
 //	while ((line = get_next_line(fd)) != NULL)
 //	{
-//		printf("NEXT+LINE =%s", line);
+//		printf("/nNext Line = %s", line);
 //		free(line);
 //	}
 //	close(fd);

@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:18:52 by ccolin            #+#    #+#             */
-/*   Updated: 2024/05/17 16:07:01 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/05/19 16:51:31 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,17 @@ char	*get_next_line(int fd)
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
+	leftover = ft_read_from_file(fd, leftover);
 	if (!leftover)
-		leftover = ft_read_from_file(fd, leftover);
-	if (!leftover)
+	{
+		free(leftover);
 		return (NULL);
+	}
 	next_line = ft_find_line(leftover);
 	temp = leftover;
-	leftover = ft_strchr(leftover, '\n');
-	if (leftover)
-	{
-		leftover++;
-		if (*leftover == '\0')
-			leftover = NULL;
-	}
+	leftover = ft_find_leftover(leftover);
+	if (leftover == NULL)
+		free(leftover);
 	free(temp);
 	return (next_line);
 }
@@ -45,6 +43,7 @@ char	*ft_read_from_file(int fd, char *leftover)
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
+	ft_memset(buffer, 0, BUFFER_SIZE);
 	while (!ft_strchr(buffer, '\n'))
 	{	
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
@@ -88,3 +87,13 @@ char	*ft_find_line(char *leftover)
 	return (str);
 }
 
+char	*ft_find_leftover(char *leftover)
+{
+	while (*leftover && *leftover != '\n')
+		leftover++;
+	if (*leftover == '\n')
+		leftover++;
+	if (*leftover == '\0')
+		return (NULL);
+	return (ft_strdup(leftover));
+}
