@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 10:34:18 by ccolin            #+#    #+#             */
-/*   Updated: 2024/05/19 21:25:18 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/05/21 14:58:05 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include <unistd.h>
 # include <limits.h>
 
-// # define BUFFER_SIZE 1000
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 void	*ft_memset(void *b, int c, size_t len);
 char	*ft_find_leftover(char *leftover);

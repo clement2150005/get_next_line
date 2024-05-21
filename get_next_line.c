@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:18:52 by ccolin            #+#    #+#             */
-/*   Updated: 2024/05/21 10:23:02 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/05/21 14:58:03 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ char	*ft_find_line(char *leftover)
 	while (leftover[i] != '\n' && leftover[i])
 		i++;
 	str = malloc(sizeof(char) * (i + 2));
+	if (!str)
+		return (NULL);
 	while (i > j)
 	{
 		str[j] = leftover[j];

@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:18:52 by ccolin            #+#    #+#             */
-/*   Updated: 2024/05/21 10:24:17 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/05/21 14:58:45 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ char	*ft_find_line(char *leftover)
 	while (leftover[i] != '\n' && leftover[i])
 		i++;
 	str = malloc(sizeof(char) * (i + 2));
+	if (!str)
+		return (NULL);
 	while (i > j)
 	{
 		str[j] = leftover[j];
@@ -98,3 +100,42 @@ char	*ft_find_leftover(char *leftover)
 		return (NULL);
 	return (ft_strdup(leftover));
 }
+//#include <fcntl.h> // for open
+//#include <unistd.h> // for close
+//#include <stdio.h> // for printf
+//#include <stdlib.h> // for free
+
+//// Declare get_next_line prototype
+//char *get_next_line(int fd);
+
+//// 
+//int main(void)
+//{
+//    int fd;
+//    char *line;
+
+//    // Open the file in read-only mode
+//    //fd = open("test.txt", O_RDONLY);
+//    fd = 1;
+//    if (fd == -1)
+//    {
+//        perror("Error opening file");
+//        return 1;
+//    }
+
+//    // Read lines from the file using get_next_line
+//    while ((line = get_next_line(fd)) != NULL)
+//    {
+//        printf("%s", line);
+//        free(line); // Don't forget to free the line after processing it
+//    }
+
+//    // Close the file
+//    if (close(fd) == -1)
+//    {
+//        perror("Error closing file");
+//        return 1;
+//    }
+
+//    return 0;
+//}
