@@ -6,7 +6,7 @@
 /*   By: ccolin <ccolin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 10:18:52 by ccolin            #+#    #+#             */
-/*   Updated: 2024/05/19 21:29:09 by ccolin           ###   ########.fr       */
+/*   Updated: 2024/05/21 10:24:17 by ccolin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char	*ft_read_from_file(int fd, char *leftover)
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if (bytes_read == -1)
 		{
+			free(leftover);
 			free(buffer);
 			return (NULL);
 		}
